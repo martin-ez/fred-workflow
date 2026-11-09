@@ -1,0 +1,11 @@
+{
+  "name": "fred-workflow",
+  "owner": { "name": "martin-ez" },
+  "plugins": [
+    {
+      "name": "fred-workflow",
+      "source": "./",
+      "description": "FRED (File, Refine, Execute, Decide): a minimal, tracker-agnostic workflow for agentic development."
+    }
+  ]
+}

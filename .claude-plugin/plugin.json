@@ -1,0 +1,6 @@
+{
+  "name": "fred-workflow",
+  "version": "0.1.0",
+  "description": "FRED (File, Refine, Execute, Decide): a minimal, tracker-agnostic workflow for agentic development, with a ledger of decisions.",
+  "author": { "name": "martin-ez" }
+}
