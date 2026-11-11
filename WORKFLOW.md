@@ -68,13 +68,17 @@ Rejected; git keeps the history. Write the record in the pull request that
 implements it, so merging approves it. If records overlap or have gone stale,
 file an issue.
 
+A record holds only while its Why does. When it no longer does, move the issue
+to Needs decision and say what changed. If the user keeps the answer, rewrite
+the Why and put the proposed change under Rejected.
+
 ```md
 # <The question>
 Decided in #N
 
 **Applies when:** <the situation a future agent will be in>
 **Answer:** <what was decided>
-**Why:** <the reason>
+**Why:** <the reason, specific enough to tell when it no longer holds>
 **Rejected:** <options turned down, and why> (optional)
 ```
 
