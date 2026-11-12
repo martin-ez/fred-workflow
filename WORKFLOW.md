@@ -59,14 +59,23 @@ The user asks for these in plain words. There are no commands.
 
 ## Decisions
 
-`decisions/` holds one file per question, named after the question. Check it
-before asking the user anything.
+`decisions/` holds one file per subject, such as a kind of data or a part of
+the product, named after the question it answers. Check it before asking the
+user anything.
 
-Record a decision when the user makes it and it matters beyond its issue. If a
-record already answers that question, edit it and move the old answer under
-Rejected; git keeps the history. Write the record in the pull request that
-implements it, so merging approves it. If records overlap or have gone stale,
-file an issue.
+Record a decision only when the user makes it, it is a contract with the
+people using the product or between its parts, and reversing it would mean
+migrating data, breaking that contract or changing something users have
+learned. Leave out open questions, temporary scope and anything a pending
+experiment could still change; the tracker holds those. If part of an answer
+isn't built yet, say so in one line that links the issue that will build it,
+and delete the line in that issue's pull request.
+
+If a record already covers the subject, extend it and add the issue to its
+Decided in line instead of adding a file. If the new answer replaces an old
+one, move the old one under Rejected; git keeps the history. Write the record
+in the pull request that implements it, so merging approves it. If records
+overlap or have gone stale, file an issue.
 
 A record holds only while its Why does. When it no longer does, move the issue
 to Needs decision and say what changed. If the user keeps the answer, rewrite
