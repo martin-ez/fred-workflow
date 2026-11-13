@@ -18,3 +18,9 @@ plugins/rules/instructions.md
 plugins/rules/skills/strict-comments/SKILL.md
 plugins/rules/skills/strict-pr/SKILL.md
 plugins/rules/skills/strict-tests/SKILL.md
+tests/helpers.sh
+tests/no-pr-merge.test.sh
+tests/run.sh
+tests/session-start.test.sh
+tests/strict-pr-gate.test.sh
+tests/strict-pr-text.test.sh
