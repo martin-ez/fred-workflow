@@ -36,6 +36,9 @@ git push' "$repo")")"
 check "gh pr create chained after a commit is denied" deny "$(run "$(bash_call 'git commit -am wip; gh pr create --fill' "$repo")")"
 check_contains "the denial asks for the push on its own" "as its own command" \
   "$(reason "$(gate "$(bash_call 'cd . && git push' "$repo")")")"
+check "a push after blank lines is allowed" allow "$(run "$(bash_call '
+
+  git push' "$repo")")"
 check "deleting a remote branch after another command is allowed" allow \
   "$(run "$(bash_call 'git fetch && git push origin --delete topic' "$repo")")"
 
