@@ -1,6 +1,6 @@
 {
   "name": "rules",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "The maintainer's own rules for pull requests, tests and comments, the hooks that enforce them, and the maintainer's FRED registry.",
   "author": { "name": "martin-ez" }
 }
