@@ -30,6 +30,14 @@ check_contains "the denial gives the command that records a pass" "sh '$hook' --
 
 check_contains "--checked records the current commit" "as passing the strict checks" "$(cd "$repo" && sh "$hook" --checked)"
 check "pushing after a recorded pass is allowed" allow "$(run "$(bash_call 'git push' "$repo")")"
+check "a push chained after a commit is denied" deny "$(run "$(bash_call 'git commit -am wip && git push' "$repo")")"
+check "a push on a later line of the same command is denied" deny "$(run "$(bash_call 'git commit -am wip
+git push' "$repo")")"
+check "gh pr create chained after a commit is denied" deny "$(run "$(bash_call 'git commit -am wip; gh pr create --fill' "$repo")")"
+check_contains "the denial asks for the push on its own" "as its own command" \
+  "$(reason "$(gate "$(bash_call 'cd . && git push' "$repo")")")"
+check "deleting a remote branch after another command is allowed" allow \
+  "$(run "$(bash_call 'git fetch && git push origin --delete topic' "$repo")")"
 
 commit_file "$repo" app.ts "export const b = 2;"
 check "a code change after the recorded pass is denied" deny "$(run "$(bash_call 'git push' "$repo")")"
