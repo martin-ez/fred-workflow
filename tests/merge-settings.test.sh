@@ -20,4 +20,8 @@ printf 'not json' >"$broken"
 sh "$merge" "$rules" "$broken" 2>/dev/null
 check "a settings file that isn't JSON is left alone" "not json" "$(cat "$broken")"
 
+untouched="$work/untouched/settings.json"
+sh "$merge" "$work/missing.json" "$untouched"
+check "a missing rules file creates nothing" "absent" "$([ -e "$untouched" ] && echo present || echo absent)"
+
 finish
