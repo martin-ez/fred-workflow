@@ -50,10 +50,14 @@ cloud sessions read it from one place:
   comment skills have run, check pull request text before it is published, and
   stop agents from merging.
 - The FRED registry, `fred.md`, and the user instructions, `instructions.md`.
+- User settings, `user-settings.json`, which turn off the attribution Claude
+  Code adds to commits and pull requests.
 
-Locally, install it with `claude plugin install rules@fred-workflow`, and link
+Locally, install it with `claude plugin install rules@fred-workflow`, link
 `~/.claude/fred.md` and `~/.claude/CLAUDE.md` to those two files in a
-checkout. Release it like the workflow, from its own folder.
+checkout, and merge `user-settings.json` into `~/.claude/settings.json` with
+`sh cloud/merge-settings.sh plugins/rules/user-settings.json ~/.claude/settings.json`.
+Release it like the workflow, from its own folder.
 
 ## Cloud sessions
 

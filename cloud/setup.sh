@@ -1,7 +1,7 @@
 #!/bin/bash
 # Setup script for a Claude Code cloud environment: fetches this repository to
-# /opt/claude/fred-workflow and installs the rules plugin's instructions as the
-# session's CLAUDE.md. It always exits 0; /opt/claude/setup.log says what it did.
+# /opt/claude/fred-workflow and installs the rules plugin's instructions and user
+# settings for the session. It always exits 0; /opt/claude/setup.log says what it did.
 
 repo=martin-ez/fred-workflow
 ref=main
@@ -33,6 +33,13 @@ rm -rf "$dir"
   if [ -f "$dir/plugins/rules/instructions.md" ]; then
     mkdir -p "$user" && cp "$dir/plugins/rules/instructions.md" "$user/CLAUDE.md" &&
       echo "Installed the instructions as $user/CLAUDE.md."
+  fi
+  if [ -f "$dir/plugins/rules/user-settings.json" ]; then
+    if sh "$dir/cloud/merge-settings.sh" "$dir/plugins/rules/user-settings.json" "$user/settings.json"; then
+      echo "Merged the rules plugin's user settings into $user/settings.json."
+    else
+      echo "Could not merge the rules plugin's user settings into $user/settings.json."
+    fi
   fi
 } >"$dest/setup.log" 2>&1
 exit 0
