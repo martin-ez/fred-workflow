@@ -37,6 +37,7 @@ To work on it, load a checkout with a test registry:
 `FRED_REGISTRY=/tmp/fred.md claude --plugin-dir ~/_dev/martin-ez/fred-workflow`.
 To release, bump `version` in `.claude-plugin/plugin.json`, run
 `claude plugin tag`, push, and `claude plugin update fred-workflow`.
+`sh tests/run.sh` tests the hooks; it needs `jq` and `git`.
 
 ## The maintainer's rules
 

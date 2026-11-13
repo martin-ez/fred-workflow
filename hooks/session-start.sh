@@ -7,15 +7,10 @@ project="${CLAUDE_PROJECT_DIR:-$PWD}"
 root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 registry="${FRED_REGISTRY:-$HOME/.claude/fred.md}"
 
-# The project's repository as owner/repo, from its origin remote. Only the
-# URL's last two parts count, since a cloud session's remote can point at a
-# proxy instead of the host.
-repo=$(git -C "$project" remote get-url origin 2>/dev/null |
+origin_owner_and_repo=$(git -C "$project" remote get-url origin 2>/dev/null |
   sed -E 's#/+$##; s#\.git$##; s#^.*[/:]([^/:]+/[^/:]+)$#\1#' | tr '[:upper:]' '[:lower:]')
 
-# The registry section for the project: the deepest folder that holds it, so a
-# worktree inside a project counts as that project, or else its repository.
-section=$(awk -v project="$project/" -v home="$HOME" -v repo="$repo" '
+section=$(awk -v project="$project/" -v home="$HOME" -v repo="$origin_owner_and_repo" '
   /^## / {
     name = substr($0, 4)
     sub(/[ \t]+$/, "", name)

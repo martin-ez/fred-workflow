@@ -1,9 +1,7 @@
 #!/bin/sh
-# PreToolUse hook: checks a pull request's title and description against the
-# strict-pr rules before it is opened or edited. Countable rules are checked
-# here; a model with no context of the repo judges the rest, as their reader.
-# Pull requests must go through a GitHub tool, or through `gh api` with the
-# text in an --input file, so that the text can be read.
+# PreToolUse hook: checks pull request text against the strict-pr rules before
+# it is published, counting what it can and asking a model without context to
+# judge the rest. It reads the text from a GitHub tool or a `gh api --input` file.
 
 model=${STRICT_PR_MODEL:-sonnet}
 input=$(cat)
@@ -23,18 +21,17 @@ if [ "$tool" = Bash ]; then
   start='(^|[;&|(])[[:space:]]*gh[[:space:]]+pr[[:space:]]+'
   printf '%s\n' "$command" | grep -Eq "${start}create([[:space:]]|\$)" && deny "$via"
   printf '%s\n' "$command" | grep -Eq "${start}edit[[:space:]].*(--title|--body|[[:space:]]-[tbF][[:space:]])" && deny "$via"
-  # A pull request opened or edited through the REST API.
-  pulls=$(printf '%s\n' "$command" | grep -Eo '(^|[;&|(])[[:space:]]*gh[[:space:]]+api[[:space:]][^;&|]*' |
+  api_pull_request_call=$(printf '%s\n' "$command" | grep -Eo '(^|[;&|(])[[:space:]]*gh[[:space:]]+api[[:space:]][^;&|]*' |
     grep -E '/pulls(/[0-9]+)?(["'"'"'[:space:]]|$)' | head -n 1)
-  [ -n "$pulls" ] || exit 0
-  printf '%s\n' "$pulls" | grep -Eq -- '--input|--method[[:space:]=]+(POST|PATCH)|-X[[:space:]]*(POST|PATCH)|[[:space:]]-[fF][[:space:]]|--(raw-)?field' || exit 0
-  file=$(printf '%s\n' "$pulls" | sed -nE 's/.*--input[[:space:]=]+([^[:space:]]+).*/\1/p' | tr -d "\"'")
+  [ -n "$api_pull_request_call" ] || exit 0
+  printf '%s\n' "$api_pull_request_call" | grep -Eq -- '--input|--method[[:space:]=]+(POST|PATCH)|-X[[:space:]]*(POST|PATCH)|[[:space:]]-[fF][[:space:]]|--(raw-)?field' || exit 0
+  file=$(printf '%s\n' "$api_pull_request_call" | sed -nE 's/.*--input[[:space:]=]+([^[:space:]]+).*/\1/p' | tr -d "\"'")
   [ -n "$file" ] && [ "$file" != - ] || deny "$via"
   case "$file" in /*) ;; *) file="$(field .cwd)/$file" ;; esac
   [ -r "$file" ] || deny "The --input file $file can't be read. $via"
   title=$(jq -r '.title // empty' "$file" 2>/dev/null)
   body=$(jq -r '.body // empty' "$file" 2>/dev/null)
-  printf '%s\n' "$pulls" | grep -Eq '/pulls(["'"'"'[:space:]]|$)' && tool=create_pull_request
+  printf '%s\n' "$api_pull_request_call" | grep -Eq '/pulls(["'"'"'[:space:]]|$)' && tool=create_pull_request
 fi
 [ -n "$title$body" ] || exit 0
 problems=
@@ -75,8 +72,6 @@ retry="Rewrite the title and description as the strict-pr skill says, then retry
 [ -z "$problems" ] || deny "Strict PR check:$problems
 $retry"
 
-# The judge: a model that knows nothing of the repo, given only the text, the
-# repo's pull request template and the user's recent messages.
 command -v claude >/dev/null 2>&1 || warn "the claude CLI is not on PATH."
 template=
 if [ -n "$top" ]; then
