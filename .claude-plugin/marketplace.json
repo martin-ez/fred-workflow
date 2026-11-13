@@ -6,6 +6,11 @@
       "name": "fred-workflow",
       "source": "./",
       "description": "FRED (File, Refine, Execute, Decide): a minimal, tracker-agnostic workflow for agentic development."
+    },
+    {
+      "name": "rules",
+      "source": "./plugins/rules",
+      "description": "The maintainer's own rules for pull requests, tests and comments, the hooks that enforce them, and the maintainer's FRED registry."
     }
   ]
 }

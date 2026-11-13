@@ -107,7 +107,7 @@ use FRED and how each one's tracker works:
 
 <rules for every project (optional)>
 
-## <project folder, e.g. ~/code/app>
+## <project repository or folder, e.g. github.com/me/app or ~/code/app>
 Tracker: <which tracker, and where>
 Statuses: <how each status is shown>
 Source: <how the source is shown>
@@ -115,6 +115,9 @@ Blockers: <how a blocker is recorded>
 Done: <how merging a pull request closes its issue>
 <rules for this project (optional)>
 ```
+
+A repository matches every clone of it, wherever it is, such as a cloud
+session's; a folder matches only that folder and what's inside it.
 
 To set a project up, ask the user which tracker to use, then check that
 tracker's documentation for how best to do each of these, above all how
