@@ -1,0 +1,36 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "^Bash$|create_pull_request$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/strict-pr-gate.sh\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "^Bash$|(create|update)_pull_request$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/strict-pr-text.sh\"",
+            "timeout": 120
+          }
+        ]
+      },
+      {
+        "matcher": "^Bash$|merge_pull_request$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh \"${CLAUDE_PLUGIN_ROOT}/hooks/no-pr-merge.sh\"",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}
