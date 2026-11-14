@@ -45,4 +45,18 @@ mkdir -p "$work/home/code/app"
 printf '# FRED\n\n## ~/code/app\nTracker: by-home\n' >"$registry"
 check "a folder section can start from the home folder" "Tracker: by-home" "$(HOME="$work/home" matched "$work/home/code/app")"
 
+mkdir -p "$work/own/.claude"
+printf 'Tracker: by-project\n' >"$work/own/.claude/fred.md"
+printf '# FRED\n\nRule for every project.\n' >"$registry"
+check "a project's own settings register it without a registry section" "Tracker: by-project" "$(matched "$work/own")"
+check_contains "the workflow comes with a project's own settings" "# FRED workflow" "$(start "$work/own")"
+check_contains "the registry's rules for every project come with a project's own settings" "Rule for every project." "$(start "$work/own")"
+check_contains "subagents get a project's own settings" "Tracker: by-project" "$(start "$work/own" --registered-only)"
+
+printf '# FRED\n\n## %s/own\nTracker: by-folder\n' "$work" >"$registry"
+check "a registry section for the project comes with its own settings" "Tracker: by-folder Tracker: by-project" "$(matched "$work/own")"
+
+registry="$work/missing.md"
+check "a project's own settings work without a registry" "Tracker: by-project" "$(matched "$work/own")"
+
 finish
