@@ -98,16 +98,10 @@ a fix (file it), or beside the code.
 
 ## Setup
 
-FRED stays out of the project's code: the only thing it adds to a project is
-`decisions/`. The user's registry, `~/.claude/fred.md`, lists the projects that
-use FRED and how each one's tracker works:
+FRED stays out of the project's code. It adds two things to a project:
+`decisions/`, and `.claude/fred.md`, which says how the project's tracker works:
 
 ```md
-# FRED
-
-<rules for every project (optional)>
-
-## <project repository or folder, e.g. github.com/me/app or ~/code/app>
 Tracker: <which tracker, and where>
 Statuses: <how each status is shown>
 Source: <how the source is shown>
@@ -116,14 +110,27 @@ Done: <how merging a pull request closes its issue>
 <rules for this project (optional)>
 ```
 
+The user's registry, `~/.claude/fred.md`, holds their rules for every project.
+It can also hold a section for a project that keeps no settings of its own:
+
+```md
+# FRED
+
+<rules for every project (optional)>
+
+## <project repository or folder, e.g. github.com/me/app or ~/code/app>
+<the same lines as a project's .claude/fred.md>
+```
+
 A repository matches every clone of it, wherever it is, such as a cloud
 session's; a folder matches only that folder and what's inside it.
 
 To set a project up, ask the user which tracker to use, then check that
 tracker's documentation for how best to do each of these, above all how
 merging a pull request closes its issue, so that Done takes no extra step.
-Write the answers into the project's section, and create what they need in the
-tracker, such as labels or states.
+Write the answers into the project's `.claude/fred.md`, or into a registry
+section if the user wants them kept out of the project, and create what they
+need in the tracker, such as labels or states.
 
 Rules in the registry take precedence over this file, and a project's rules
 over the user's rules for every project.

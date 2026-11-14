@@ -6,14 +6,11 @@ important architecture and UX decisions with the humans, recorded in each
 project's `decisions/` so agents ask less over time. The whole workflow is
 [`WORKFLOW.md`](WORKFLOW.md).
 
-FRED stays out of your code. The only thing it adds to a project is its
-`decisions/`; everything else lives in `~/.claude/fred.md`, and a session-start
-hook adds the workflow to every project listed there:
+FRED stays out of your code. It adds two things to a project: its
+`decisions/`, and `.claude/fred.md`, which says how the project's tracker
+works. A session-start hook adds the workflow to every project that has one:
 
 ```md
-# FRED
-
-## github.com/martin-ez/app
 Tracker: GitHub Issues in martin-ez/app
 Statuses: one `status:` label; Done and Dropped are closed issues
 Source: a `source:user` or `source:agent` label
@@ -21,10 +18,22 @@ Blockers: a "Blocked by #N" line in the body
 Done: the pull request says "Closes #N", with the keyword before every issue
 ```
 
-A section names a repository, matched against the project's `origin` remote
-wherever it is cloned, or a folder such as `~/_dev/martin-ez/app`. Point
-`FRED_REGISTRY` at another file to use it instead of `~/.claude/fred.md`, as a
-cloud environment does.
+Your own rules for every project go in your registry, `~/.claude/fred.md`. It
+can also hold a section for a project that keeps no settings of its own, named
+after its repository, matched against the project's `origin` remote wherever
+it is cloned, or after a folder such as `~/_dev/martin-ez/app`:
+
+```md
+# FRED
+
+<your rules for every project>
+
+## github.com/martin-ez/app
+<the same lines as a project's .claude/fred.md>
+```
+
+Point `FRED_REGISTRY` at another file to use it instead of
+`~/.claude/fred.md`, as a cloud environment does.
 
 ## Install
 

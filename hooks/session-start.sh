@@ -1,11 +1,12 @@
 #!/bin/sh
-# Adds the FRED workflow to the session's context when the project is listed
-# in the user's registry; elsewhere, leaves a one-line pointer to it, unless
-# called with --registered-only.
+# Adds the FRED workflow to the session's context when the project has its own
+# .claude/fred.md or a section in the user's registry; elsewhere, leaves a
+# one-line pointer to it, unless called with --registered-only.
 
 project="${CLAUDE_PROJECT_DIR:-$PWD}"
 root="${CLAUDE_PLUGIN_ROOT:-$(cd "$(dirname "$0")/.." && pwd)}"
 registry="${FRED_REGISTRY:-$HOME/.claude/fred.md}"
+settings="$project/.claude/fred.md"
 
 origin_owner_and_repo=$(git -C "$project" remote get-url origin 2>/dev/null |
   sed -E 's#/+$##; s#\.git$##; s#^.*[/:]([^/:]+/[^/:]+)$#\1#' | tr '[:upper:]' '[:lower:]')
@@ -31,11 +32,17 @@ section=$(awk -v project="$project/" -v home="$HOME" -v repo="$origin_owner_and_
   END { printf "%s", (folder != "" ? folder : byrepo) }
 ' "$registry" 2>/dev/null)
 
-if [ -n "$section" ]; then
+if [ -f "$settings" ] || [ -n "$section" ]; then
   cat "$root/WORKFLOW.md"
-  printf '\n---\n\nFrom the user'"'"'s FRED registry (%s):\n\n' "$registry"
-  awk '/^## /{exit} {print}' "$registry"
-  printf '%s' "$section"
+  if [ -f "$registry" ]; then
+    printf '\n---\n\nFrom the user'"'"'s FRED registry (%s):\n\n' "$registry"
+    awk '/^## /{exit} {print}' "$registry"
+    printf '%s' "$section"
+  fi
+  if [ -f "$settings" ]; then
+    printf '\n---\n\nFrom the project'"'"'s own FRED settings (%s):\n\n' "$settings"
+    cat "$settings"
+  fi
 elif [ "$1" != "--registered-only" ]; then
-  echo "The FRED workflow is installed, but this project is not in the user's FRED registry ($registry). If the user wants to use FRED here, read $root/WORKFLOW.md and set the project up."
+  echo "The FRED workflow is installed, but this project has no .claude/fred.md and is not in the user's FRED registry ($registry). If the user wants to use FRED here, read $root/WORKFLOW.md and set the project up."
 fi
