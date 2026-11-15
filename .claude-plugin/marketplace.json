@@ -3,7 +3,7 @@
   "owner": { "name": "martin-ez" },
   "plugins": [
     {
-      "name": "fred-workflow",
+      "name": "fred",
       "source": "./",
       "description": "FRED (File, Refine, Execute, Decide): a minimal, tracker-agnostic workflow for agentic development."
     },

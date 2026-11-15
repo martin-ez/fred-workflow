@@ -35,8 +35,8 @@ it is cloned, or after a folder such as `~/_dev/martin-ez/app`:
 Point `FRED_REGISTRY` at another file to use it instead of
 `~/.claude/fred.md`, as a cloud environment does.
 
-To start a session, run `/fred-workflow:next`, optionally followed by an area
-or milestone to focus on. It reviews the Ready issues with no open blockers,
+To start a session, run `/fred:next`, optionally followed by an area or
+milestone to focus on. It reviews the Ready issues with no open blockers,
 weighs them against the roadmap, and asks which one to take, recommendation
 first, with a short description of each.
 
@@ -44,13 +44,13 @@ first, with a short description of each.
 
 ```sh
 claude plugin marketplace add martin-ez/fred-workflow
-claude plugin install fred-workflow@fred-workflow
+claude plugin install fred@fred-workflow
 ```
 
 To work on it, load a checkout with a test registry:
 `FRED_REGISTRY=/tmp/fred.md claude --plugin-dir ~/_dev/martin-ez/fred-workflow`.
 To release, bump `version` in `.claude-plugin/plugin.json`, run
-`claude plugin tag`, push, and `claude plugin update fred-workflow`.
+`claude plugin tag`, push, and `claude plugin update fred`.
 `sh tests/run.sh` tests the hooks; it needs `jq` and `git`.
 
 ## The maintainer's rules
