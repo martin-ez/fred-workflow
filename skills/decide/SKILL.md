@@ -26,13 +26,22 @@ Spend effort on an issue only once the user chooses to decide it.
 2. **The candidates.** Every open issue in Inbox or Needs decision. If the
    user named a focus, such as an area or a milestone, keep to the ones that
    fit it. Leave out issues already handled or skipped in this session.
-3. **The order.** Rank by what deciding the issue unlocks: the issue itself
-   becoming Ready, and the open issues waiting on it, above all Ready issues
-   waiting on nothing else. Work in an earlier stage of the roadmap
-   (milestones, a project board, priority labels) counts more than work in a
-   later one. Use only what the issue list gives, such as titles, statuses,
-   milestones and blocker counts; look further only to break ties near the
-   top. Don't read issue bodies yet.
+3. **The order.** Rank by what deciding the issue unlocks, judging the
+   project as a whole and not only the links between issues:
+   - **Issues:** the issue itself becoming Ready, and the open issues waiting
+     on it, above all Ready issues waiting on nothing else.
+   - **Workflows:** what the user or agents could do that they can't now, or
+     only slowly, such as checking their own work, previewing a branch or
+     reaching a service.
+   - **Opportunities:** what it opens up for the project, such as a part of
+     the product people could start using, a risk retired, or several issues
+     settled by one answer.
+
+   Work in an earlier stage of the roadmap (milestones, a project board,
+   priority labels) counts more than work in a later one. Judge from the
+   issue list and what you know of the project, such as its README, roadmap
+   and recent work, and read an issue's body only when its title leaves its
+   value unclear.
 
 ## Sweep
 
@@ -40,7 +49,8 @@ Take the top four, or the batch size the user gave, and read just enough of
 each to say what it is. Ask about them in one AskUserQuestion call, one
 question per issue, at most four per call. Each question names the issue,
 says what it asks for and what deciding it unlocks, such as "Unlocks #22,
-#23 and 3 more in milestone 4", and offers:
+#23 and 3 more in milestone 4" or "Lets agents check UI changes on their
+own", and offers:
 
 - **Decide now:** work through it in this session. Its description says what
   that involves: refining an Inbox issue, or the open questions waiting on a

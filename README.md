@@ -42,9 +42,11 @@ focus on:
   against the roadmap, and asks which one to take, recommendation first, with
   a short description of each.
 - `/fred:decide` ranks the Inbox and Needs decision issues by what deciding
-  them unlocks and shows them four at a time, or as many as you ask for. Each
-  can be decided now, skipped until a later session, or archived. The ones
-  you decide are refined, their open questions asked, and moved to Ready.
+  them unlocks, from the issues waiting on them to the workflows and
+  opportunities they open up for the project, and shows them four at a time,
+  or as many as you ask for. Each can be decided now, skipped until a later
+  session, or archived. The ones you decide are refined, their open questions
+  asked, and moved to Ready.
 
 ## Install
 

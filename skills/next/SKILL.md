@@ -36,9 +36,12 @@ roadmap furthest, and let the user choose. Claim nothing until they do.
 Recommend the candidate that does the most for the roadmap. Weigh:
 
 - **Roadmap order.** Earlier stages first, and finishing a stage before
-  starting the next. Work outside the roadmap ranks on what it unblocks.
-- **What it unblocks.** Issues that others are blocked by, above all Ready
-  issues waiting on nothing else.
+  starting the next. Work outside the roadmap ranks on what it unlocks.
+- **What it unlocks**, judging the project as a whole and not only the links
+  between issues: the issues waiting on it, above all Ready ones waiting on
+  nothing else; what the user or agents could do that they can't now, such as
+  checking their own work or previewing a branch; and what it opens up, such
+  as a part of the product people could start using or a risk retired.
 - **Whether it can be finished now.** What would stop it partway, such as a
   decision or review the project's rules keep for the user, a credential to
   ask for, or a service the session can't reach. Say so on the option rather
