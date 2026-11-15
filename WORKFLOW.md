@@ -48,7 +48,8 @@ if it isn't obvious, and keep going.
 
 ## The four kinds of work
 
-The user asks for these in plain words. There are no commands.
+The user asks for these in plain words. One shorthand, `/fred-workflow:next`,
+offers the best Ready issues to Execute and lets the user pick one.
 
 - **File**: capture work as Inbox issues, from one thing noticed mid-task to a
   whole plan brainstormed with the user.

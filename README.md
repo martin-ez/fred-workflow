@@ -35,6 +35,11 @@ it is cloned, or after a folder such as `~/_dev/martin-ez/app`:
 Point `FRED_REGISTRY` at another file to use it instead of
 `~/.claude/fred.md`, as a cloud environment does.
 
+To start a session, run `/fred-workflow:next`, optionally followed by an area
+or milestone to focus on. It reviews the Ready issues with no open blockers,
+weighs them against the roadmap, and asks which one to take, recommendation
+first, with a short description of each.
+
 ## Install
 
 ```sh

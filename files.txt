@@ -20,6 +20,7 @@ plugins/rules/skills/strict-comments/SKILL.md
 plugins/rules/skills/strict-pr/SKILL.md
 plugins/rules/skills/strict-tests/SKILL.md
 plugins/rules/user-settings.json
+skills/next/SKILL.md
 tests/helpers.sh
 tests/merge-settings.test.sh
 tests/no-pr-merge.test.sh
