@@ -10,11 +10,6 @@ argument-hint: "[batch size] [area or milestone to focus on]"
 
 # Decide
 
-If the project's FRED settings aren't in your context, as when a session
-starts above several checkouts, find them by running
-`CLAUDE_PROJECT_DIR=<checkout> sh "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh" --registered-only`
-on each checkout.
-
 1. **Rank** the open Inbox and Needs decision issues, kept to the user's
    focus if they named one, leaving out those handled or skipped in this
    session. Rank by what deciding each unlocks, judged across the project and

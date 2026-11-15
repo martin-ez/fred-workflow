@@ -9,11 +9,6 @@ argument-hint: "[area or milestone to focus on]"
 
 # Next
 
-If the project's FRED settings aren't in your context, as when a session
-starts above several checkouts, find them by running
-`CLAUDE_PROJECT_DIR=<checkout> sh "${CLAUDE_PLUGIN_ROOT}/hooks/session-start.sh" --registered-only`
-on each checkout.
-
 1. **Gather.** List the open issues with their status, milestone and open
    blockers. The candidates are the Ready issues with no open blockers, kept
    to the user's focus if they named one. Read each candidate and the
