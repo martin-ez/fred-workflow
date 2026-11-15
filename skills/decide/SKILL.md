@@ -26,7 +26,7 @@ argument-hint: "[batch size] [area or milestone to focus on]"
    - **Decide now**, saying what that involves, such as refining it or the
      questions waiting on it.
    - **Skip:** leave it as it is until a later session.
-   - **Archive:** close it as Dropped.
+   - **Archive:** move it to Dropped.
 
    Put your recommendation first, marked "(Recommended)": usually Decide now,
    or Archive for an issue that is obsolete, a duplicate or already done.
@@ -43,7 +43,3 @@ argument-hint: "[batch size] [area or milestone to focus on]"
 5. **Report** what became Ready, what waits on a decision and what was
    archived, then ask whether to sweep the next batch, saying how many
    remain.
-
-On GitHub, the REST issue list gives each issue's
-`issue_dependencies_summary`, where `blocked_by` counts open blockers and
-`blocking` the open issues it holds up.

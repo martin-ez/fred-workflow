@@ -9,10 +9,11 @@ argument-hint: "[area or milestone to focus on]"
 
 # Next
 
-1. **Gather.** List the open issues with their status, milestone and open
-   blockers. The candidates are the Ready issues with no open blockers, kept
-   to the user's focus if they named one. Read each candidate and the
-   roadmap: milestones, a project board or priority labels.
+1. **Gather.** List the open issues with their status, place on the roadmap
+   and open blockers. The candidates are the Ready issues with no open
+   blockers, kept to the user's focus if they named one. Read each candidate
+   and the roadmap, however the tracker shows it, such as milestones, cycles
+   or priorities.
 2. **Rank** by what does the most for the roadmap:
    - Earlier stages first, finishing a stage before starting the next.
    - What it unlocks, judged across the project and not only from links: the
@@ -21,17 +22,13 @@ argument-hint: "[area or milestone to focus on]"
      a risk retired.
    - Lower when it would touch the same code as work In progress or In review.
 3. **Ask** in one AskUserQuestion question, with up to four candidates, best
-   first and marked "(Recommended)". Label each with its number and a few
-   words. Describe in one or two sentences what will exist when it's done and
-   why now, and put its milestone, what it unlocks, what it needs from the
-   user and its size in the preview. Since the dialog may hide your message,
+   first and marked "(Recommended)". Label each with its id and a few words.
+   Describe in one or two sentences what will exist when it's done and why
+   now, and put its place on the roadmap, what it unlocks, what it needs from
+   the user and its size in the preview. Since the dialog may hide your message,
    the question says how many issues are Ready and unblocked, and what holds
    up the rest. With one candidate, offer `/fred:decide` as the other option;
    with none, say so and suggest it.
 4. **Start** the chosen issue: check that it is still Ready and unclaimed,
    move it to In progress and Execute it. If the user answers in their own
    words, follow them.
-
-On GitHub, the REST issue list gives each issue's
-`issue_dependencies_summary`, where `blocked_by` counts open blockers and
-`blocking` the open issues it holds up.
