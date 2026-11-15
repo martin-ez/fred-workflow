@@ -35,10 +35,16 @@ it is cloned, or after a folder such as `~/_dev/martin-ez/app`:
 Point `FRED_REGISTRY` at another file to use it instead of
 `~/.claude/fred.md`, as a cloud environment does.
 
-To start a session, run `/fred:next`, optionally followed by an area or
-milestone to focus on. It reviews the Ready issues with no open blockers,
-weighs them against the roadmap, and asks which one to take, recommendation
-first, with a short description of each.
+Two commands save typing, each optionally followed by an area or milestone to
+focus on:
+
+- `/fred:next` reviews the Ready issues with no open blockers, weighs them
+  against the roadmap, and asks which one to take, recommendation first, with
+  a short description of each.
+- `/fred:decide` ranks the Inbox and Needs decision issues by what deciding
+  them unlocks and shows them four at a time, or as many as you ask for. Each
+  can be decided now, skipped until a later session, or archived. The ones
+  you decide are refined, their open questions asked, and moved to Ready.
 
 ## Install
 
